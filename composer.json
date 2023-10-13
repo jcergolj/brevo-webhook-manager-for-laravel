@@ -1,0 +1,80 @@
+{
+    "name": "jcergolj/brevo-webhook-manager-for-laravel",
+    "description": "Brevo webhook manager for Laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Janez Cergolj",
+            "email": "me@jcergolj.me.uk"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Jcergolj\\BrevoWebhookManager\\": "src/"
+        }
+    },
+    "scripts": {
+        "pint": "vendor/bin/pint",
+        "larastan": "./vendor/bin/phpstan analyse --memory-limit=2G",
+        "phpinisghts": "./vendor/bin/phpinsights --no-interaction --fix -v",
+        "tlint": "tlint",
+        "analyse": [
+            "@pint",
+            "@larastan",
+            "@phpinisghts",
+            "@tlint"
+        ],
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve"
+        ],
+        "lint": [
+            "@php vendor/bin/pint",
+            "@php vendor/bin/phpstan analyse"
+        ],
+        "test": [
+            "@php vendor/bin/phpunit"
+        ]
+    },
+    "require-dev": {
+        "laravel/pint": "^1.9",
+        "nunomaduro/larastan": "^2.0",
+        "nunomaduro/phpinsights": "^2.8",
+        "tightenco/tlint": "^9.1",
+        "orchestra/testbench": "^8.12"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jcergolj\\BrevoWebhookManager\\BrevoWebhookMangerServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/",
+            "Jcergolj\\BrevoWebhookManager\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^7.8",
+        "laravel/prompts": "^0.1.11"
+    }
+}

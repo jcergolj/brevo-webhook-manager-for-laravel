@@ -1,0 +1,20 @@
+providers:
+  - Jcergolj\BrevoWebhookManager\BrevoWebhookMangerServiceProvider
+
+migrations:
+  - workbench/database/migrations
+
+seeders:
+  - Workbench\Database\Seeders\DatabaseSeeder
+
+workbench:
+  start: '/'
+  install: true
+  welcome: true
+  discovers:
+    web: false
+    api: false
+    commands: false
+  build: []
+  assets: []
+  sync: []
