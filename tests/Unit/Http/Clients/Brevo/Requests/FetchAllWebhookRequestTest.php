@@ -23,7 +23,7 @@ class FetchAllWebhookRequestTest extends TestCase
     public function send_successful()
     {
         Http::fake([
-            config('brevo-webhook-manager.brevo.base_url').'webhooks' => Http::response([
+            config('brevo-webhook-manager.brevo.base_url').'webhooks*' => Http::response([
                 'webhooks' => [
                     [
                         'id' => 123,
@@ -49,14 +49,14 @@ class FetchAllWebhookRequestTest extends TestCase
 
         $fetchAllWebhookRequest = app(FetchAllWebhookRequest::class);
 
-        $this->assertInstanceOf(FetchAllWebhookResponse::class, $fetchAllWebhookRequest->send());
+        $this->assertInstanceOf(FetchAllWebhookResponse::class, $fetchAllWebhookRequest->send(WebhookTypes::TRANSACTIONAL->value));
     }
 
     /** @test */
     public function send_bad()
     {
         Http::fake([
-            config('brevo-webhook-manager.brevo.base_url').'webhooks' => Http::response(
+            config('brevo-webhook-manager.brevo.base_url').'webhooks*' => Http::response(
                 ['message' => 'invalid', 'code' => Response::HTTP_BAD_REQUEST],
                 Response::HTTP_BAD_REQUEST
             ),
@@ -64,6 +64,6 @@ class FetchAllWebhookRequestTest extends TestCase
 
         $fetchAllWebhookRequest = app(FetchAllWebhookRequest::class);
 
-        $this->assertInstanceOf(BadResponse::class, $fetchAllWebhookRequest->send());
+        $this->assertInstanceOf(BadResponse::class, $fetchAllWebhookRequest->send(WebhookTypes::TRANSACTIONAL->value));
     }
 }
