@@ -4,6 +4,7 @@ namespace Jcergolj\BrevoWebhookManager\Console\Commands;
 
 use Illuminate\Console\Command;
 use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Requests\FetchWebhookRequest;
+
 use function Laravel\Prompts\spin;
 use function Laravel\Prompts\table;
 use function Laravel\Prompts\text;

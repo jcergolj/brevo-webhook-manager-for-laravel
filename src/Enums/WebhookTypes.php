@@ -2,8 +2,6 @@
 
 namespace Jcergolj\BrevoWebhookManager\Enums;
 
-use Jcergolj\BrevoWebhookManager\Enums\Helpable;
-
 enum WebhookTypes: string
 {
     use Helpable;

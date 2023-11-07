@@ -5,9 +5,10 @@ namespace Jcergolj\BrevoWebhookManager\Console\Commands;
 use Illuminate\Console\Command;
 use Jcergolj\BrevoWebhookManager\Enums\WebhookTypes;
 use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Requests\FetchAllWebhookRequest;
+
+use function Laravel\Prompts\select;
 use function Laravel\Prompts\spin;
 use function Laravel\Prompts\table;
-use function Laravel\Prompts\select;
 
 class FetchWebhooks extends Command
 {

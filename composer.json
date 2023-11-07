@@ -22,8 +22,8 @@
         "tlint": "tlint",
         "analyse": [
             "@pint",
-            "@larastan",
             "@phpinisghts",
+            "@larastan",
             "@tlint"
         ],
         "post-autoload-dump": [

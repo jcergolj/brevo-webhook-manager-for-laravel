@@ -7,6 +7,7 @@ use Jcergolj\BrevoWebhookManager\Enums\MarketingWebhookEvents;
 use Jcergolj\BrevoWebhookManager\Enums\WebhookTypes;
 use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\RequestAttributes\CreateAttribute;
 use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Requests\CreateWebhookRequest;
+
 use function Laravel\Prompts\multiselect;
 use function Laravel\Prompts\spin;
 use function Laravel\Prompts\text;
