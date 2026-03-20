@@ -13,8 +13,7 @@ class FetchWebhookResponse
         public Response $original,
         public int $status,
         public Webhook $webhook,
-    ) {
-    }
+    ) {}
 
     public static function fromResponse(Response $response): FetchWebhookResponse
     {

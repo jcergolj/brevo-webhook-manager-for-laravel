@@ -16,7 +16,7 @@ class VerifyBrevoWebhookMiddlewareTest extends TestCase
         $this->withExceptionHandling();
         $this->expectException(HttpException::class);
 
-        $middleware = new VerifyBrevoWebhookMiddleware();
+        $middleware = new VerifyBrevoWebhookMiddleware;
 
         $request = new Request(
             server: ['REMOTE_ADDR' => '129.0.0.1'],
@@ -39,7 +39,7 @@ class VerifyBrevoWebhookMiddlewareTest extends TestCase
             return $expectedResponse;
         };
 
-        $actualResponse = (new VerifyBrevoWebhookMiddleware())->handle($request, $next);
+        $actualResponse = (new VerifyBrevoWebhookMiddleware)->handle($request, $next);
 
         $this->assertSame($expectedResponse, $actualResponse);
     }

@@ -10,9 +10,7 @@ use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Responses\CreateWebhookRespo
 
 class CreateWebhookRequest
 {
-    public function __construct(public Factory $client)
-    {
-    }
+    public function __construct(public Factory $client) {}
 
     public function send(CreateAttribute $attribute): BadResponse|CreateWebhookResponse
     {

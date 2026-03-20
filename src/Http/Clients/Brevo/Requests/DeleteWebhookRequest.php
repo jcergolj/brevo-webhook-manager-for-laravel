@@ -9,9 +9,7 @@ use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Responses\DeleteWebhookRespo
 
 class DeleteWebhookRequest
 {
-    public function __construct(public Factory $client)
-    {
-    }
+    public function __construct(public Factory $client) {}
 
     public function send(int $id): BadResponse|DeleteWebhookResponse
     {

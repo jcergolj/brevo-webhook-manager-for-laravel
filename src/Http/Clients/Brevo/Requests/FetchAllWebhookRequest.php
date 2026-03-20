@@ -9,9 +9,7 @@ use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Responses\FetchAllWebhookRes
 
 class FetchAllWebhookRequest
 {
-    public function __construct(public Factory $client)
-    {
-    }
+    public function __construct(public Factory $client) {}
 
     public function send(string $type): BadResponse|FetchAllWebhookResponse
     {

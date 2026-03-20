@@ -8,9 +8,7 @@ class DeleteWebhookResponse
 {
     use HasStatus;
 
-    private function __construct(public Response $original, public int $status)
-    {
-    }
+    private function __construct(public Response $original, public int $status) {}
 
     public static function fromResponse(Response $response): DeleteWebhookResponse
     {

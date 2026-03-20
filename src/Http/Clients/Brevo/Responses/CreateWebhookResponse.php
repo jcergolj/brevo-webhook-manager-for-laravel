@@ -8,9 +8,7 @@ class CreateWebhookResponse
 {
     use HasStatus;
 
-    private function __construct(public Response $original, public int $status, public int $id)
-    {
-    }
+    private function __construct(public Response $original, public int $status, public int $id) {}
 
     public static function fromResponse(Response $response): CreateWebhookResponse
     {

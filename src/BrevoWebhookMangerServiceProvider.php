@@ -15,9 +15,7 @@ use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\BrevoMacro;
 
 class BrevoWebhookMangerServiceProvider extends ServiceProvider
 {
-    public function register(): void
-    {
-    }
+    public function register(): void {}
 
     public function boot(): void
     {
@@ -25,7 +23,7 @@ class BrevoWebhookMangerServiceProvider extends ServiceProvider
             __DIR__.'/../config/brevo-webhook-manager.php' => config_path('brevo-webhook-manager.php'),
         ], 'brevo-webhook-manager');
 
-        Http::mixin(new BrevoMacro());
+        Http::mixin(new BrevoMacro);
 
         if ($this->app->runningInConsole()) {
             $this->commands([

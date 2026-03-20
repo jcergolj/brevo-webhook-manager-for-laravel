@@ -17,8 +17,7 @@ class Webhook
         public Carbon $createdAt,
         public Carbon $modifiedAt,
         public ?string $domain = null
-    ) {
-    }
+    ) {}
 
     public static function fromArray(array $attributes): Webhook
     {

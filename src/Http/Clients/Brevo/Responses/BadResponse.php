@@ -6,9 +6,7 @@ use Illuminate\Http\Client\Response;
 
 class BadResponse
 {
-    private function __construct(public Response $response, public int $status, public string $error, public string $code)
-    {
-    }
+    private function __construct(public Response $response, public int $status, public string $error, public string $code) {}
 
     public static function fromResponse(Response $response): BadResponse
     {
