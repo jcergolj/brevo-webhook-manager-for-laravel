@@ -11,8 +11,8 @@ class VerifyBrevoWebhookMiddleware
     public function handle(Request $request, Closure $next): mixed
     {
         $validIPRanges = [
-            ['start' => ip2long('185.107.232.0'), 'end' => ip2long('185.107.232.255')],
-            ['start' => ip2long('1.179.112.2'), 'end' => ip2long('1.179.127.254')],
+            ['start' => ip2long('1.179.112.0'), 'end' => ip2long('1.179.127.255')],
+            ['start' => ip2long('172.246.240.0'), 'end' => ip2long('172.246.255.255')],
         ];
 
         foreach ($validIPRanges as $range) {
