@@ -7,10 +7,11 @@ use Illuminate\Http\Client\Response as ClientResponse;
 use Illuminate\Http\Response;
 use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Responses\BadResponse;
 use Jcergolj\BrevoWebhookManager\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class BadResponseTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function from_response()
     {
         $psr7Response = new Psr7Response(

@@ -11,13 +11,14 @@ use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Requests\CreateWebhookReques
 use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Responses\BadResponse;
 use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Responses\CreateWebhookResponse;
 use Jcergolj\BrevoWebhookManager\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CreateWebhookRequestTest extends TestCase
 {
     /** @var CreateAttribute */
     public $attributes;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -31,7 +32,7 @@ class CreateWebhookRequestTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function send_successful()
     {
         Http::fake([
@@ -43,7 +44,7 @@ class CreateWebhookRequestTest extends TestCase
         $this->assertInstanceOf(CreateWebhookResponse::class, $createWebhookRequest->send($this->attributes));
     }
 
-    /** @test */
+    #[Test]
     public function send_bad()
     {
         Http::fake([

@@ -15,7 +15,13 @@ use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\BrevoMacro;
 
 class BrevoWebhookMangerServiceProvider extends ServiceProvider
 {
-    public function register(): void {}
+    public function register(): void
+    {
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/brevo-webhook-manager.php',
+            'brevo-webhook-manager'
+        );
+    }
 
     public function boot(): void
     {

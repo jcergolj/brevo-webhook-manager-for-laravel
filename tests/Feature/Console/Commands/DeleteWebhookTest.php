@@ -6,13 +6,14 @@ use Illuminate\Http\Client\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
 use Jcergolj\BrevoWebhookManager\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class DeleteWebhookTest extends TestCase
 {
     /** @var int */
     public $webhookId = 123;
 
-    /** @test */
+    #[Test]
     public function webhook_is_deleted()
     {
         Http::fake([
@@ -28,7 +29,7 @@ class DeleteWebhookTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function webhook_is_not_deleted()
     {
         Http::fake([

@@ -9,13 +9,14 @@ use Illuminate\Support\Facades\Http;
 use Jcergolj\BrevoWebhookManager\Enums\MarketingWebhookEvents;
 use Jcergolj\BrevoWebhookManager\Enums\WebhookTypes;
 use Jcergolj\BrevoWebhookManager\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class FetchWebhookTest extends TestCase
 {
     /** @var array */
     public $attributes;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -32,7 +33,7 @@ class FetchWebhookTest extends TestCase
         ];
     }
 
-    /** @test */
+    #[Test]
     public function fetch_webhook()
     {
         Http::fake([
@@ -45,7 +46,7 @@ class FetchWebhookTest extends TestCase
         $this->artisan('brevo-webhooks:fetch')
             ->expectsQuestion('Please provide the webhook\'s id:', $this->attributes['id'])
             ->expectsTable(
-                ['Url', 'Description', 'Type', 'Events', 'Created At', 'Modified At', 'Domain'],
+                ['ID', 'Url', 'Description', 'Type', 'Events', 'Created At', 'Modified At', 'Domain'],
                 [
                     [
                         $this->attributes['id'],
@@ -65,7 +66,7 @@ class FetchWebhookTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function webhook_is_not_fetched()
     {
         Http::fake([

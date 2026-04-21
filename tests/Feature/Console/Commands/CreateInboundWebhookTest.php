@@ -8,13 +8,14 @@ use Illuminate\Support\Facades\Http;
 use Jcergolj\BrevoWebhookManager\Enums\InboundWebhookEvents;
 use Jcergolj\BrevoWebhookManager\Enums\WebhookTypes;
 use Jcergolj\BrevoWebhookManager\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CreateInboundWebhookTest extends TestCase
 {
     /** @var int */
     public $webhookId = 123;
 
-    /** @test */
+    #[Test]
     public function webhook_is_created()
     {
         Http::fake([
@@ -44,7 +45,7 @@ class CreateInboundWebhookTest extends TestCase
         }]);
     }
 
-    /** @test */
+    #[Test]
     public function webhook_is_not_created()
     {
         Http::fake([

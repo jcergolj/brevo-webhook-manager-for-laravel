@@ -9,17 +9,18 @@ use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Requests\FetchAllWebhookRequ
 use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Responses\BadResponse;
 use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Responses\FetchAllWebhookResponse;
 use Jcergolj\BrevoWebhookManager\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class FetchAllWebhookRequestTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
         Http::preventStrayRequests();
     }
 
-    /** @test */
+    #[Test]
     public function send_successful()
     {
         Http::fake([
@@ -52,7 +53,7 @@ class FetchAllWebhookRequestTest extends TestCase
         $this->assertInstanceOf(FetchAllWebhookResponse::class, $fetchAllWebhookRequest->send(WebhookTypes::TRANSACTIONAL->value));
     }
 
-    /** @test */
+    #[Test]
     public function send_bad()
     {
         Http::fake([

@@ -6,7 +6,6 @@ use Illuminate\Console\Command;
 use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Requests\FetchWebhookRequest;
 
 use function Laravel\Prompts\spin;
-use function Laravel\Prompts\table;
 use function Laravel\Prompts\text;
 
 class FetchWebhook extends Command
@@ -32,8 +31,8 @@ class FetchWebhook extends Command
             return;
         }
 
-        table(
-            ['Url', 'Description', 'Type', 'Events', 'Created At', 'Modified At', 'Domain'],
+        $this->table(
+            ['ID', 'Url', 'Description', 'Type', 'Events', 'Created At', 'Modified At', 'Domain'],
             [
                 [
                     $response->webhook->id,

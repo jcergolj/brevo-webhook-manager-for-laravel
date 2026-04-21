@@ -4,6 +4,7 @@ namespace Jcergolj\BrevoWebhookManager\Tests\Unit\Http\Clients\Brevo;
 
 use Illuminate\Support\Facades\Http;
 use Jcergolj\BrevoWebhookManager\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 use ReflectionClass;
 
 class BrevoMacroTest extends TestCase
@@ -11,7 +12,7 @@ class BrevoMacroTest extends TestCase
     /** @var PendingRequest */
     public $pendingRequest;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -20,37 +21,37 @@ class BrevoMacroTest extends TestCase
         $this->pendingRequest = Http::presetting()->dump();
     }
 
-    /** @test */
+    #[Test]
     public function assert_http_client_has_presetting_method()
     {
         $this->assertTrue(Http::hasMacro('presetting'));
     }
 
-    /** @test */
+    #[Test]
     public function assert_api_key_header()
     {
         $this->assertSame(config('brevo-webhook-manager.brevo.api_key'), $this->pendingRequest->getOptions()['headers']['api-key']);
     }
 
-    /** @test */
+    #[Test]
     public function assert_accept_header_is_set()
     {
         $this->assertSame('application/json', $this->pendingRequest->getOptions()['headers']['accept']);
     }
 
-    /** @test */
+    #[Test]
     public function assert_content_type_header_is_set()
     {
         $this->assertSame('application/json', $this->pendingRequest->getOptions()['headers']['content-type']);
     }
 
-    /** @test */
+    #[Test]
     public function assert_user_agent_header_is_set()
     {
         $this->assertSame(config('brevo-webhook-manager.api_user_agent'), $this->pendingRequest->getOptions()['headers']['User-Agent']);
     }
 
-    /** @test */
+    #[Test]
     public function assert_base_url_is_set()
     {
         $pendingRequest = Http::presetting()->dump();

@@ -8,10 +8,11 @@ use Illuminate\Http\Response;
 use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Responses\DeleteWebhookResponse;
 use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Responses\HasStatus;
 use Jcergolj\BrevoWebhookManager\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class DeleteWebhookResponseTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function from_response()
     {
         $psr7Response = new Psr7Response(
@@ -26,7 +27,7 @@ class DeleteWebhookResponseTest extends TestCase
         $this->assertSame($clientResponse, $response->original);
     }
 
-    /** @test */
+    #[Test]
     public function asset_class_has_has_status_trait()
     {
         $this->assertContains(HasStatus::class, class_uses(DeleteWebhookResponse::class));

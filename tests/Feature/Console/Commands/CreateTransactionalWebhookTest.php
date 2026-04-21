@@ -8,13 +8,14 @@ use Illuminate\Support\Facades\Http;
 use Jcergolj\BrevoWebhookManager\Enums\TransactionalWebhookEvents;
 use Jcergolj\BrevoWebhookManager\Enums\WebhookTypes;
 use Jcergolj\BrevoWebhookManager\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CreateTransactionalWebhookTest extends TestCase
 {
     /** @var int */
     public $webhookId = 123;
 
-    /** @test */
+    #[Test]
     public function webhook_is_created()
     {
         Http::fake([
@@ -26,7 +27,7 @@ class CreateTransactionalWebhookTest extends TestCase
             ->expectsQuestion('Please provide webhook description:', 'example webhook')
             ->expectsQuestion(
                 'Select webhook events:',
-                TransactionalWebhookEvents::SENT->value,
+                [TransactionalWebhookEvents::SENT->value],
             )->expectsOutput('Webhook created successfully');
 
         Http::assertSentInOrder([function (Request $request) {
@@ -46,7 +47,7 @@ class CreateTransactionalWebhookTest extends TestCase
         }]);
     }
 
-    /** @test */
+    #[Test]
     public function webhook_is_not_created()
     {
         Http::fake([
@@ -61,7 +62,7 @@ class CreateTransactionalWebhookTest extends TestCase
             ->expectsQuestion('Please provide webhook description:', 'example webhook')
             ->expectsQuestion(
                 'Select webhook events:',
-                TransactionalWebhookEvents::SENT->value,
+                [TransactionalWebhookEvents::SENT->value],
             )->expectsOutput('Webhook was not created: Invalid');
 
         Http::assertSentInOrder([function (Request $request) {

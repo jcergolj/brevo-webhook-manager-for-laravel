@@ -10,10 +10,11 @@ use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Exceptions\InvalidUrl;
 use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Exceptions\InvalidWebhookType;
 use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\RequestAttributes\CreateAttribute;
 use Jcergolj\BrevoWebhookManager\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CreateAttributeTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function to_array()
     {
         $attribute = new CreateAttribute(
@@ -31,7 +32,7 @@ class CreateAttributeTest extends TestCase
         $this->assertSame('Example webhook', $attributes['description']);
     }
 
-    /** @test */
+    #[Test]
     public function to_array_no_description()
     {
         $attribute = new CreateAttribute(
@@ -49,7 +50,7 @@ class CreateAttributeTest extends TestCase
         $this->assertArrayNotHasKey('description', $attributes);
     }
 
-    /** @test */
+    #[Test]
     public function to_array_domain()
     {
         $attribute = new CreateAttribute(
@@ -69,7 +70,7 @@ class CreateAttributeTest extends TestCase
         $this->assertSame('example.com', $attributes['domain']);
     }
 
-    /** @test */
+    #[Test]
     public function invalid_url()
     {
         $this->expectException(InvalidUrl::class);
@@ -82,7 +83,7 @@ class CreateAttributeTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function invalid_domain_inbound_webhook_type_domain_null()
     {
         $this->expectException(InvalidWebhookType::class);
@@ -95,7 +96,7 @@ class CreateAttributeTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function invalid_domain_not_inbound_webhook_type_domain_not_null()
     {
         $this->expectException(InvalidWebhookType::class);
@@ -109,7 +110,7 @@ class CreateAttributeTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function invalid_event_for_transactional_webhook()
     {
         $this->expectException(InvalidWebhookType::class);
@@ -122,7 +123,7 @@ class CreateAttributeTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function valid_event_for_transactional_webhook()
     {
         try {
@@ -141,7 +142,7 @@ class CreateAttributeTest extends TestCase
         $this->assertTrue(true);
     }
 
-    /** @test */
+    #[Test]
     public function invalid_event_for_marketing_webhook()
     {
         $this->expectException(InvalidWebhookType::class);
@@ -154,7 +155,7 @@ class CreateAttributeTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function valid_event_for_marketing_webhook()
     {
         try {
@@ -173,7 +174,7 @@ class CreateAttributeTest extends TestCase
         $this->assertTrue(true);
     }
 
-    /** @test */
+    #[Test]
     public function invalid_event_for_inbound_webhook()
     {
         $this->expectException(InvalidWebhookType::class);
@@ -186,7 +187,7 @@ class CreateAttributeTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function valid_event_for_inbound_webhook()
     {
         try {

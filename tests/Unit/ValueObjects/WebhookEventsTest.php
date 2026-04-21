@@ -8,10 +8,11 @@ use Jcergolj\BrevoWebhookManager\Enums\TransactionalWebhookEvents;
 use Jcergolj\BrevoWebhookManager\Enums\WebhookTypes;
 use Jcergolj\BrevoWebhookManager\Tests\TestCase;
 use Jcergolj\BrevoWebhookManager\ValueObjects\WebhookEvents;
+use PHPUnit\Framework\Attributes\Test;
 
 class WebhookEventsTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function transactional_type_events()
     {
         $webhookEvents = new WebhookEvents(WebhookTypes::TRANSACTIONAL->value, [TransactionalWebhookEvents::BLOCKED->value, TransactionalWebhookEvents::CLICK->value]);
@@ -19,7 +20,7 @@ class WebhookEventsTest extends TestCase
         $this->assertSame([TransactionalWebhookEvents::BLOCKED, TransactionalWebhookEvents::CLICK], $webhookEvents->items);
     }
 
-    /** @test */
+    #[Test]
     public function marketing_type_events()
     {
         $webhookEvents = new WebhookEvents(WebhookTypes::MARKETING->value, [MarketingWebhookEvents::CLICK->value, MarketingWebhookEvents::DELIVERED->value]);
@@ -27,7 +28,7 @@ class WebhookEventsTest extends TestCase
         $this->assertSame([MarketingWebhookEvents::CLICK, MarketingWebhookEvents::DELIVERED], $webhookEvents->items);
     }
 
-    /** @test */
+    #[Test]
     public function inbound_type_events()
     {
         $webhookEvents = new WebhookEvents(WebhookTypes::INBOUND->value, [InboundWebhookEvents::INBOUND_EMAIL_PROCESSED->value]);
@@ -35,7 +36,7 @@ class WebhookEventsTest extends TestCase
         $this->assertSame([InboundWebhookEvents::INBOUND_EMAIL_PROCESSED], $webhookEvents->items);
     }
 
-    /** @test */
+    #[Test]
     public function implode()
     {
         $webhookEvents = new WebhookEvents(WebhookTypes::MARKETING->value, [MarketingWebhookEvents::CLICK->value, MarketingWebhookEvents::DELIVERED->value]);

@@ -8,13 +8,14 @@ use Jcergolj\BrevoWebhookManager\Enums\WebhookTypes;
 use Jcergolj\BrevoWebhookManager\Items\Webhook;
 use Jcergolj\BrevoWebhookManager\Tests\TestCase;
 use Jcergolj\BrevoWebhookManager\ValueObjects\WebhookEvents;
+use PHPUnit\Framework\Attributes\Test;
 
 class WebhookTest extends TestCase
 {
     /** @var array */
     public $attributes;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -29,7 +30,7 @@ class WebhookTest extends TestCase
         ];
     }
 
-    /** @test */
+    #[Test]
     public function from_array()
     {
         $webhook = Webhook::fromArray($this->attributes);
@@ -55,7 +56,7 @@ class WebhookTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function to_array()
     {
         $webhook = Webhook::fromArray($this->attributes);

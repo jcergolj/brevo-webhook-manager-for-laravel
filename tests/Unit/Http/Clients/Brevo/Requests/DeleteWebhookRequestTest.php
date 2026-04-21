@@ -8,20 +8,21 @@ use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Requests\DeleteWebhookReques
 use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Responses\BadResponse;
 use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Responses\DeleteWebhookResponse;
 use Jcergolj\BrevoWebhookManager\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class DeleteWebhookRequestTest extends TestCase
 {
     /** @var int */
     public $webhookId = 123;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
         Http::preventStrayRequests();
     }
 
-    /** @test */
+    #[Test]
     public function send_successful()
     {
         Http::fake([
@@ -33,7 +34,7 @@ class DeleteWebhookRequestTest extends TestCase
         $this->assertInstanceOf(DeleteWebhookResponse::class, $deleteWebhookRequest->send($this->webhookId));
     }
 
-    /** @test */
+    #[Test]
     public function send_bad()
     {
         Http::fake([

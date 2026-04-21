@@ -11,13 +11,14 @@ use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Responses\FetchWebhookRespon
 use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Responses\HasStatus;
 use Jcergolj\BrevoWebhookManager\Items\Webhook;
 use Jcergolj\BrevoWebhookManager\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class FetchWebhookResponseTest extends TestCase
 {
     /** @var array */
     public $attributes;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -32,7 +33,7 @@ class FetchWebhookResponseTest extends TestCase
         ];
     }
 
-    /** @test */
+    #[Test]
     public function from_response()
     {
         $psr7Response = new Psr7Response(
@@ -55,7 +56,7 @@ class FetchWebhookResponseTest extends TestCase
         $this->assertInstanceOf(Webhook::class, $response->webhook);
     }
 
-    /** @test */
+    #[Test]
     public function asset_class_has_has_status_trait()
     {
         $this->assertContains(HasStatus::class, class_uses(FetchWebhookResponse::class));

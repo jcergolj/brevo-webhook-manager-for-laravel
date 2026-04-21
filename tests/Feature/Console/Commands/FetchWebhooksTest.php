@@ -9,13 +9,14 @@ use Illuminate\Support\Facades\Http;
 use Jcergolj\BrevoWebhookManager\Enums\MarketingWebhookEvents;
 use Jcergolj\BrevoWebhookManager\Enums\WebhookTypes;
 use Jcergolj\BrevoWebhookManager\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class FetchWebhooksTest extends TestCase
 {
     /** @var array */
     public $webhooks;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -45,7 +46,7 @@ class FetchWebhooksTest extends TestCase
         ];
     }
 
-    /** @test */
+    #[Test]
     public function fetch_webhooks()
     {
         Http::fake([
@@ -55,8 +56,18 @@ class FetchWebhooksTest extends TestCase
             ),
         ]);
 
-        $this->webhooks[0]['events'] = implode(', ', $this->webhooks[0]['events']);
-        $this->webhooks[1]['events'] = implode(', ', $this->webhooks[1]['events']);
+        $expectedRows = array_map(function ($webhook) {
+            return [
+                'id' => $webhook['id'],
+                'url' => $webhook['url'],
+                'description' => $webhook['description'],
+                'type' => $webhook['type'],
+                'events' => implode(', ', $webhook['events']),
+                'createdAt' => Carbon::parse($webhook['createdAt'])->format('d/m/Y H:i:s'),
+                'modifiedAt' => Carbon::parse($webhook['modifiedAt'])->format('d/m/Y H:i:s'),
+                'domain' => 'N/A',
+            ];
+        }, $this->webhooks);
 
         $this->artisan('brevo-webhooks:fetch-all')
             ->expectsQuestion(
@@ -64,8 +75,8 @@ class FetchWebhooksTest extends TestCase
                 WebhookTypes::MARKETING->value
             )
             ->expectsTable(
-                ['Url', 'Description', 'Type', 'Events', 'Created At', 'Modified At', 'Domain'],
-                $this->webhooks
+                ['ID', 'Url', 'Description', 'Type', 'Events', 'Created At', 'Modified At', 'Domain'],
+                $expectedRows
             );
 
         Http::assertSentInOrder([
@@ -73,7 +84,7 @@ class FetchWebhooksTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function webhooks_are_not_fetched()
     {
         Http::fake([

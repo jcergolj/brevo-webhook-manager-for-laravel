@@ -8,7 +8,6 @@ use Jcergolj\BrevoWebhookManager\Http\Clients\Brevo\Requests\FetchAllWebhookRequ
 
 use function Laravel\Prompts\select;
 use function Laravel\Prompts\spin;
-use function Laravel\Prompts\table;
 
 class FetchWebhooks extends Command
 {
@@ -39,7 +38,7 @@ class FetchWebhooks extends Command
 
         $webhooks = $response->webhooks->itemsValueToString();
 
-        table(
+        $this->table(
             ['ID', 'Url', 'Description', 'Type', 'Events', 'Created At', 'Modified At', 'Domain'],
             $webhooks
         );

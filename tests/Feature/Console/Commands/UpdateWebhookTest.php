@@ -11,6 +11,7 @@ use Jcergolj\BrevoWebhookManager\Enums\MarketingWebhookEvents;
 use Jcergolj\BrevoWebhookManager\Enums\TransactionalWebhookEvents;
 use Jcergolj\BrevoWebhookManager\Enums\WebhookTypes;
 use Jcergolj\BrevoWebhookManager\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class UpdateWebhookTest extends TestCase
 {
@@ -29,7 +30,7 @@ class UpdateWebhookTest extends TestCase
     /** @var string */
     public $toUpdateDomain = 'updated-example.com';
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -37,7 +38,7 @@ class UpdateWebhookTest extends TestCase
         $this->toUpdateEvent = MarketingWebhookEvents::CLICK->value;
     }
 
-    /** @test */
+    #[Test]
     public function marketing_webhook_is_updated()
     {
         Http::fake([
@@ -67,7 +68,7 @@ class UpdateWebhookTest extends TestCase
             ->expectsQuestion('Please provide webhook description:', $this->toUpdateDescription)
             ->expectsQuestion(
                 'Select webhook events:',
-                $this->toUpdateEvent
+                [$this->toUpdateEvent]
             )
             ->expectsOutput('Webhook updated successfully');
 
@@ -77,7 +78,7 @@ class UpdateWebhookTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function transactional_webhook_is_updated()
     {
         Http::fake([
@@ -107,7 +108,7 @@ class UpdateWebhookTest extends TestCase
             ->expectsQuestion('Please provide webhook description:', $this->toUpdateDescription)
             ->expectsQuestion(
                 'Select webhook events:',
-                $this->toUpdateEvent
+                [$this->toUpdateEvent]
             )
             ->expectsOutput('Webhook updated successfully');
 
@@ -117,7 +118,7 @@ class UpdateWebhookTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function inbound_webhook_is_updated()
     {
         Http::fake([
@@ -154,7 +155,7 @@ class UpdateWebhookTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function webhook_is_not_updated()
     {
         Http::fake([
@@ -184,7 +185,7 @@ class UpdateWebhookTest extends TestCase
             ->expectsQuestion('Please provide webhook description:', $this->toUpdateDescription)
             ->expectsQuestion(
                 'Select webhook events:',
-                $this->toUpdateEvent
+                [$this->toUpdateEvent]
             )
             ->expectsOutput('Webhook was not updated: Invalid');
 
@@ -194,7 +195,7 @@ class UpdateWebhookTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function webhook_is_not_fetched()
     {
         Http::fake([

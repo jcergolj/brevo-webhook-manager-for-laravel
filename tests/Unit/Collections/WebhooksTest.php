@@ -8,13 +8,14 @@ use Jcergolj\BrevoWebhookManager\Enums\MarketingWebhookEvents;
 use Jcergolj\BrevoWebhookManager\Enums\TransactionalWebhookEvents;
 use Jcergolj\BrevoWebhookManager\Enums\WebhookTypes;
 use Jcergolj\BrevoWebhookManager\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class WebhooksTest extends TestCase
 {
     /** @var array */
     public $attributes;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -40,7 +41,7 @@ class WebhooksTest extends TestCase
         ];
     }
 
-    /** @test */
+    #[Test]
     public function items_value_to_string()
     {
         $webhooks = new Webhooks($this->attributes);
