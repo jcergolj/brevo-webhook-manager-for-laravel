@@ -74,7 +74,7 @@
         }
     },
     "require": {
-        "guzzlehttp/guzzle": "^7.8",
+        "guzzlehttp/guzzle": "^8.0",
         "laravel/prompts": "^0.3"
     }
 }
